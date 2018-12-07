@@ -1,0 +1,97 @@
+﻿@model IEnumerable<OnlineMovieTicketBooking.Models.BookingTable>
+
+@{
+    ViewData["Title"] = "CheckAvailability";
+}
+@{
+
+    if (Model.Select(a => a.SeatNo).ToList() != null)
+    {
+        <h2>Seats marked in Red are not available :</h2>
+    }
+    else
+    {
+        <h2>All seats are available :</h2>
+    }
+
+
+}
+
+        <table class="table col-md-2  table-bordered table-dark" id="tableID" style="cursor: pointer;">
+            <tr>
+                <td id="A1">A1
+                <td id="A2">A2
+                <td id="A3">A3
+                <td id="A4">A4
+                <td id="A5">A5
+                <td id="A6">A6
+                <td id="A7">A7
+                <td id="A8">A8
+                <td id="A9">A9
+                <td id="A10">A10
+            </tr>
+            <tr>
+                <td id="B11">B11
+                <td id="B12">B12
+                <td id="B13">B13
+                <td id="B14">B14
+                <td id="B15">B15
+                <td id="B16">B16
+                <td id="B17">B17
+                <td id="B18">B18
+                <td id="B19">B19
+                <td id="B20">B20
+            </tr>
+            <tr>
+                <td id="C11">C11
+                <td id="C12">C12
+                <td id="C13">C13
+                <td id="C14">C14
+                <td id="C15">C15
+                <td id="C16">C16
+                <td id="C17">C17
+                <td id="C18">C18
+                <td id="C19">C19
+                <td id="C20">C20
+            </tr>
+            <tr>
+                <td id="D11">D11
+                <td id="D12">D12
+                <td id="D13">D13
+                <td id="D14">D14
+                <td id="D15">D15
+                <td id="D16">D16
+                <td id="D17">D17
+                <td id="D18">D18
+                <td id="D19">D19
+                <td id="D20">D20
+            </tr>
+            <tr>
+                <td id="E11">E11
+                <td id="E12">E12
+                <td id="E13">E13
+                <td id="E14">E14
+                <td id="E15">E15
+                <td id="E16">E16
+                <td id="E17">E17
+                <td id="E18">E18
+                <td id="E19">E19
+                <td id="E20">E20
+            </tr>
+
+        </table>
+@section scripts
+    {
+
+    <script type="text/javascript">
+
+    window.addEventListener("load", function () {
+           @foreach (var item in Model.Where(a=> a.IsCancelled ==false)) { <text> cc(@item.SeatNo); </Text>}
+
+ });
+    function cc(a) { document.getElementById(a).style.background = "red"; }
+
+
+    </script>
+
+}

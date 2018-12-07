@@ -1,0 +1,13 @@
+﻿@model IEnumerable<OnlineMovieTicketBooking.Models.Halls>
+@{
+    ViewData["Title"] = "Default";
+}
+
+<select class="form-control" id="selector1" onchange="javascript:OnSelectedChanged1();">
+    <option value="0">Select a Hall.....</option>
+    @foreach (var item in Model)
+    {
+        <option value="@item.Id">@item.HallName</option>
+
+    }
+</select>

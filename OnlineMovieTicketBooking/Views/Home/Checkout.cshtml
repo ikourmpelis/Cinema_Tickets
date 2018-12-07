@@ -1,0 +1,73 @@
+﻿@model IEnumerable<OnlineMovieTicketBooking.Models.Cart>
+
+@{
+    ViewData["Title"] = "Checkout";
+}
+<div class="panel panel-success">
+    <div class="panel-heading">
+       Please review your reservation :
+    </div>
+
+    <div class="panel-body">
+
+        <table id="reservTable" class="table restable" >
+            <thead>
+                <tr>
+                    <th>
+                        Movie Title
+                    </th>
+                    <th>
+                        Seats
+                    </th>
+                    <th>
+                        User Id
+                    </th>
+                    <th>
+                        Date
+                    </th>
+                    <th>
+                        Price
+                    </th>
+                    <th>
+                        Movie ID
+                    </th>
+                    <th>
+                        Reservation Status
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SeatNo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UserId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.date)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Amount) &euro;
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MovieId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IsChecked)
+                    </td>
+
+                </tr>
+        }
+            </tbody>
+        </table>
+        <a class="btn btn-success" asp-action="CheckoutFinal">Confirm your reservation</a>
+        <a class="btn btn-danger" asp-action="EmptyCart">Cancel your reservation</a>
+    </div>
+</div>

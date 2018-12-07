@@ -1,0 +1,149 @@
+﻿
+
+<h4>Choose 5 movies you like ....</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form id="form1" method="post" action="@Url.Action("SavePrefs", "Home")">
+
+
+            <div class="form-group">
+
+                <input hidden id="m1" name="M1" class="form-control" />
+                <input hidden id="m2" name="M2" class="form-control" />
+                <input hidden id="m3" name="M3" class="form-control" />
+                <input hidden id="m4" name="M4" class="form-control" />
+                <input hidden id="m5" name="M5" class="form-control" />
+                <table id="mtable" style="cursor: pointer;">
+                    <tr>
+                        <td valign="bottom" id="10">
+                            Six sense(1999)<br>
+                            <img src="~/images/Six sense(1999).jpg" width="100" />
+                        <td valign="bottom" id="11">
+                            Shutter island(2010)<br>
+                            <img src="~/images/Shutter island(2010).jpg" width="100" />
+                        <td valign="bottom" id="12">
+                            Psycho(1960)<br>
+                            <img src="~/images/Psycho(1960).jpg" width="100" />
+                        <td valign="bottom" id="13">
+                            Seven(1995)<br>
+                            <img src="~/images/Seven(1995).jpg" width="100" />
+                        <td valign="bottom" id="14">
+                            Insidious(2010)<br>
+                            <img src="~/images/Insidious(2010).jpg" width="100" />
+
+                        <td valign="bottom" id="20">
+                            Die Hard(1998)<br>
+                            <img src="~/images/Die Hard(1998).jpg" width="100" />
+                        <td valign="bottom" id="21">
+                            Terminator 2 (1991)<br>
+                            <img src="~/images/Terminator 2 (1991).jpg" width="100" />
+                        <td valign="bottom" id="22">
+                            The Dark Knight(2008)<br>
+                            <img src="~/images/The Dark Night(2008).jpg" width="100" />
+                        <td valign="bottom" id="23">
+                            The Matrix(1999)<br>
+                            <img src="~/images/The Matrix(1999).jpg" width="100" />
+                        <td valign="bottom" id="24">
+                            Gladiator(2000)<br>
+                            <img src="~/images/Gladiator(2000).jpg" width="100" />
+                    </tr>
+                    <tr>
+                        <td valign="bottom" id="30">
+                            21 Jump Street (2012)<br>
+                            <img src="~/images/21 Jump Street (2012).jpg" width="100" />
+                        <td valign="bottom" id="31">
+                            Deadpool (2016)<br>
+                            <img src="~/images/Deadpool (2016).jpg" width="100" />
+                        <td valign="bottom" id="32">
+                            Superbad (2007)<br>
+                            <img src="~/images/Superbad (2007).jpg" width="100" />
+                        <td valign="bottom" id="33">
+                            Being John Malkovich (1999)<br>
+                            <img src="~/images/Being John Malkovich (1999).jpg" width="100" />
+                        <td valign="bottom" id="34">
+                            Coming to America (1988)<br>
+                            <img src="~/images/Coming to America (1988).jpg" width="100" />
+
+                        <td valign="bottom" id="40">
+                            Forrest Gump (1994)<br>
+                            <img src="~/images/Forrest Gump (1994).jpg" width="100" />
+                        <td valign="bottom" id="41">
+                            The Shawshank Redemption (1994)<br>
+                            <img src="~/images/The Shawshank Redemption (1994).jpg" width="100" />
+                        <td valign="bottom" id="42">
+                            American Beauty (1999)<br>
+                            <img src="~/images/American Beauty (1999).jpg" width="100" />
+                        <td valign="bottom" id="43">
+                            The Green Mile (1999)<br>
+                            <img src="~/images/The Green Mile (1999).jpg" width="100" />
+                        <td valign="bottom" id="44">
+                            Trainspotting (1996)<br>
+                            <img src="~/images/Trainspotting (1996).jpg" width="100" />
+                    </tr>
+                    <tr>
+                        <td valign="bottom" id="50">
+                            Titanic(1997)<br>
+                            <img src="~/images/Titanic(1997).jpg" width="100" />
+                        <td valign="bottom" id="51">
+                            Pretty Woman(1990)<br>
+                            <img src="~/images/Pretty Woman(1990).jpg" width="100" />
+                        <td valign="bottom" id="52">
+                            Notebook(2004)<br>
+                            <img src="~/images/Notebook(2004).jpg" width="100" />
+                        <td valign="bottom" id="53">
+                            Pearl Harbor(2001)<br>
+                            <img src="~/images/Pearl Harbor(2001).jpg" width="100" />
+                        <td valign="bottom" id="54">
+                            Gone with the Wind (1939)<br>
+                            <img src="~/images/Gone with the Wind (1939).jpg" width="100" />
+
+                        <td valign="bottom" id="60">
+                            The Lord of the Rings: The Return of the King(2003)<br>
+                            <img src="~/images/The Lord of the Rings.jpg" width="100" />
+                        <td valign="bottom" id="61">
+                            Star Wars: Episode I - The Phantom Menace(1999)<br>
+                            <img src="~/images/Star Wars.jpg" width="100" />
+
+                        <td valign="bottom" id="62">
+                            Avatar (2009))<br>
+                            <img src="~/images/Avatar.jpg" width="100" />
+                        <td valign="bottom" id="63">
+                            Harry Potter and the Sorcerer's Stone (2001)<br>
+                            <img src="~/images/Harry Potter and the Sorcerer's Stone.jpg" width="100" />
+                        <td valign="bottom" id="64">
+                            300 (2006)<br>
+                            <img src="~/images/300 (2006).jpg" width="100" />
+
+                    </tr>
+
+
+                </table>
+
+
+            </div>
+
+
+
+
+
+        </form>
+
+    </div>
+</div>
+<div class="text-right">
+    <input form="form1" type="submit" value="Save your preferences" class="btn btn-success" />
+</div>
+
+@section scripts
+    {
+
+    <script type="text/javascript">
+
+
+
+
+
+    </script>
+
+}

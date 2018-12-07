@@ -1,0 +1,49 @@
+﻿@model IEnumerable<OnlineMovieTicketBooking.Models.Halls>
+
+@{
+    ViewData["Title"] = "ViewHalls";
+}
+
+<h2>Manage Halls</h2>
+
+<p>
+    <a asp-action="CreateHall">Create New</a>
+</p>
+<table id="hallTable" class="table restable">
+    <thead>
+        <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.HallName)
+                </th>
+                <th>
+                   Size
+                </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.HallName)
+            </td>
+            @if (item.Large == true)
+            {
+                <td>
+                    Large
+                </td>
+            }
+            else
+            {
+                <td>
+                   Small
+                </td>
+            }
+            <td>
+
+                <a asp-action="DeleteHall" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

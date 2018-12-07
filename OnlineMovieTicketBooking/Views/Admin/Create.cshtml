@@ -1,0 +1,106 @@
+﻿@model OnlineMovieTicketBooking.Models.ViewModels.MovieDetailViewModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+<br>
+<div class="panel panel-info">
+    <div class="panel-heading">
+        <h2>Create a New Movie</h2>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-4">
+                <form asp-action="Create" method="post" enctype="multipart/form-data" asp-controller="Admin">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="Name" class="control-label"></label>
+                        <input asp-for="Name" class="form-control" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Description" class="control-label"></label>
+                        <input asp-for="Description" class="form-control" />
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+
+                        <label asp-for="Genre" class="control-label"></label>
+                        <input hidden asp-for="Genre" id="GenInput" class="form-control" />
+                        <select class="form-control" id="selector" onchange="javascript:OnSelectedChanged();">
+                            <option value="0">Select a Genre.....</option>
+                            <option value="1">Action</option>
+                            <option value="2">Thriller</option>
+                            <option value="3">Romance</option>
+                            <option value="4">Horror</option>
+                            <option value="5">Sci-Fi</option>
+                            <option value="6">Drama</option>
+                        </select>
+                        <span asp-validation-for="Genre" class="text-danger"></span>
+                    </div>
+
+
+
+                    <div class="form-group">
+                        <label asp-for="DateOfMovie" class="control-label"></label>
+                        <input asp-for="DateOfMovie" class="form-control" />
+                        <span asp-validation-for="DateOfMovie" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label>Playing Until</label>
+                        <input asp-for="DateUntil" class="form-control" />
+                        <span asp-validation-for="DateUntil" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="MoviePicture" class="control-label"></label>
+                        <input type="file" name="files" multiple asp-for="MoviePicture">
+                        <span asp-validation-for="MoviePicture" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        Movie Hall
+                        <input hidden asp-for="hall" id="hallInput" class="form-control" />
+                        @await Component.InvokeAsync("HallsSelect")
+                        <span asp-validation-for="hall" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+
+                        <input hidden asp-for="GenScore" id="GenScore" class="form-control" />
+                        <span asp-validation-for="GenScore" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="submit" value="Create" class="btn btn-default" />
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div>
+            @TempData["Sucess"]
+        </div>
+
+        <div>
+            <a asp-action="Index">Back to List</a>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script type="text/javascript">
+        function OnSelectedChanged() {
+
+            var x = document.getElementById("selector");
+            document.getElementById("GenInput").value = x.options[x.selectedIndex].text;
+            document.getElementById("GenScore").value = x.value;
+
+        }
+
+        function OnSelectedChanged1() {
+
+            var x = document.getElementById("selector1");
+            
+            document.getElementById("hallInput").value = x.value;
+
+        }
+        </script>
+}

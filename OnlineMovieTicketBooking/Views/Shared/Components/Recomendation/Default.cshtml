@@ -1,0 +1,27 @@
+﻿@model IEnumerable<OnlineMovieTicketBooking.Models.UserProfile>
+@using Microsoft.AspNetCore.Identity;
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+@{
+    List<int> scores = new List<int>();
+    foreach (var item in Model.Where(a => a.UserId == UserManager.GetUserId(User)).ToList())
+    {
+
+
+        scores.Add(item.Movie_Score);
+
+    }
+    int most = 6;
+    if (scores.Count > 0)
+    {
+
+        most = scores.GroupBy(s => s)
+                                 .OrderByDescending(s => s.Count())
+                                 .First().Key;
+
+    
+        @await Component.InvokeAsync("Similarity", most)
+    }
+
+}

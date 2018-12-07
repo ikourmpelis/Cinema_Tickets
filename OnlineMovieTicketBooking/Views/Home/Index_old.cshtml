@@ -1,0 +1,175 @@
+﻿@model IEnumerable<OnlineMovieTicketBooking.Models.MovieDetails>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<br>
+@if (User.Identity.IsAuthenticated)
+{
+    @await Component.InvokeAsync("Similarity")
+}
+
+@Html.Raw(TempData["rateresult"])
+
+
+
+<h2 class="alert alert-info">Available Movies</h2>
+
+@await Component.InvokeAsync("HallTabs")
+<br>
+
+<table id="iTable">
+
+    <thead>
+        <tr>
+            <th>
+                Title
+            </th>
+            <th>
+                Description
+            </th>
+            <th>
+                Time
+            </th>
+
+            <th>
+                Poster
+            </th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        
+            <tr>
+                <td>
+
+                    <strong>  @Html.DisplayFor(modelItem => item.Movie_Name)  </strong>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Movie_Description) <br><br>
+
+
+
+                    <div class="dropdown">
+                        <button class="dropbtn btn btn-secondary">Rate this Movie</button>
+                        <div class="dropdown-content">
+                            <a asp-action="Rate" asp-route-mid="@item.Id" asp-route-rating=1>&#9733;</a>
+                            <a asp-action="Rate" asp-route-mid="@item.Id" asp-route-rating=2>&#9733;&#9733;</a>
+                            <a asp-action="Rate" asp-route-mid="@item.Id" asp-route-rating=3>&#9733;&#9733;&#9733;</a>
+                            <a asp-action="Rate" asp-route-mid="@item.Id" asp-route-rating=4>&#9733;&#9733;&#9733;&#9733;</a>
+                            <a asp-action="Rate" asp-route-mid="@item.Id" asp-route-rating=5>&#9733;&#9733;&#9733;&#9733;&#9733;</a>
+                        </div>
+                    </div>
+
+                    <div class="btn btn-outline-warning"> @await Component.InvokeAsync("Rating", item.Movie_Name)</div>
+
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateAndTime)
+                </td>
+                <td>
+                    <img src="@item.MoviePicture" width="100" asp-append-version="true">
+                </td>
+                <td>
+                    <a class="btn btn-primary" asp-action="BookNow" asp-route-id="@item.Id">Book Your Ticket</a>
+
+                <td>
+                    <a class="btn btn-primary" asp-controller="Movie" asp-action="Index" asp-route-query="@item.Movie_Name">More Details</a>
+                </td>
+
+            </tr>
+
+
+        }
+    </tbody>
+</table>
+@if (User.Identity.IsAuthenticated)
+{
+
+    @if (@TempData["NO"].ToString() == "NO")
+    {
+
+        <div class="modal fade" id="myModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title">Please help us personalize your experince</h4>
+                        <button type="button" class="close" data-dismiss="modal">×</button>
+                    </div>
+
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        @await Html.PartialAsync("_MLmovies")
+                    </div>
+
+                    <!-- Modal footer -->
+
+
+                </div>
+            </div>
+        </div>
+    }
+}
+
+
+@section scripts
+    {
+
+    <script type="text/javascript">
+        $(document).ready(function () { $("#myModal").modal(); });
+
+        var table = document.getElementById("mtable");
+        if (table != null) {
+            for (var i = 0; i < table.rows.length; i++) {
+                for (var j = 0; j < table.rows[i].cells.length; j++)
+                    table.rows[i].cells[j].onclick = function () {
+                        tableText(this);
+                    };
+            }
+        }
+
+        function tableText(tableCell) {
+            if (tableCell.style.background != "green") {
+                if (document.getElementById("m1").value == "") {
+                    document.getElementById("m1").value = String(tableCell.id);
+                    tableCell.style.background = "green";
+                } else {
+                    if (document.getElementById("m2").value == "") {
+                        document.getElementById("m2").value = String(tableCell.id);
+                        tableCell.style.background = "green";
+                    } else {
+                        if (document.getElementById("m3").value == "") {
+                            document.getElementById("m3").value = String(tableCell.id);
+                            tableCell.style.background = "green";
+                        } else {
+                            if (document.getElementById("m4").value == "") {
+                                document.getElementById("m4").value = String(tableCell.id);
+                                tableCell.style.background = "green";
+                            } else {
+                                if (document.getElementById("m5").value == "") {
+                                    document.getElementById("m5").value = String(tableCell.id);
+                                    tableCell.style.background = "green";
+                                } else {
+
+                                }
+                            }
+                        }
+                    }
+                }
+            } else { }
+
+        }
+
+
+
+
+
+
+    </script>
+
+}

@@ -1,0 +1,343 @@
+﻿@import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
+body {
+    padding :50px;
+}
+
+
+/* Wrapping element */
+/* Set some basic padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+    
+}
+.cellRed {
+    background-color: Red;
+}
+
+
+/* Carousel */
+.carousel-caption p {
+    font-size: 20px;
+    line-height: 1.4;
+}
+
+/* Make .svg files in the carousel display properly in older browsers */
+.carousel-inner .item img[src$=".svg"] {
+    width: 100%;
+}
+
+/* QR code generator */
+#qrCode {
+    margin: 15px;
+}
+
+/* Hide/rearrange for smaller screens */
+@media screen and (max-width: 767px) {
+    /* Hide captions */
+    .carousel-caption {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 800px) {
+    /* Force table to not be like tables anymore */
+    #no-more-tables table,
+    #no-more-tables thead,
+    #no-more-tables tbody,
+    #no-more-tables th,
+    #no-more-tables td,
+    #no-more-tables tr {
+        display: block;
+    }
+
+        /* Hide table headers (but not display: none;, for accessibility) */
+        #no-more-tables thead tr {
+            position: absolute;
+            top: -9999px;
+            left: -9999px;
+        }
+
+ 
+
+    #no-more-tables td {
+        /* Behave  like a "row" */
+        border: none;
+        border-bottom: 1px solid #eee;
+        position: relative;
+        padding-left: 50%;
+        white-space: normal;
+        text-align: left;
+    }
+
+        #no-more-tables td:before {
+            /* Now like a table header */
+            position: absolute;
+            /* Top/left values mimic padding */
+            top: 6px;
+            left: 6px;
+            width: 45%;
+            padding-right: 10px;
+            white-space: nowrap;
+            text-align: left;
+            font-weight: bold;
+        }
+
+        /*
+    Label the data
+    */
+        #no-more-tables td:before {
+            content: attr(data-title);
+        }
+}
+#selectStar {
+    margin-bottom: 1em;
+    padding: .25em;
+    border: 0;
+    font-weight: bold;
+    letter-spacing: .15em;
+    border-radius: 0;
+    background-color: #303030;
+    color: #ffd800;
+    text-align: center;
+    text-align-last: center;
+}
+#width_tmp_select {
+    display: none;
+}
+
+
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: rgb(128, 128, 128);
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+    .dropdown-content a {
+        color: #ffd800;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+    }
+
+        .dropdown-content a:hover {
+            background-color: #ddd;
+        }
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: #ffd800;
+}
+
+.restable table {
+    width: 100%;
+    border-collapse: collapse;
+   
+}
+
+
+
+.restable th {
+    background: #333;
+    color: white;
+    font-weight: bold;
+}
+
+.restable td, th {
+    padding: 6px;
+    text-align: left;
+}
+.restable td {
+    border-bottom: groove;
+}
+    /* 
+Max width before this PARTICULAR table gets nasty
+This query will take effect for any screen smaller than 760px
+and also iPads specifically.
+*/
+    @media only screen and (max-width: 760px), (min-device-width: 768px) and (max-device-width: 1024px) {
+        /* Force table to not be like tables anymore */
+        .restable table, thead, tbody, th, td, tr {
+            display: block;
+            border: none;
+        }
+
+        /* Hide table headers (but not display: none;, for accessibility) */
+        .restable thead tr {
+            position: absolute;
+            top: -9999px;
+            left: -9999px;
+        }
+
+        .restable tr {
+            border-bottom: groove;
+        }
+
+
+
+        .restable td {
+            /* Behave  like a "row" */
+            border: none;
+            position: relative;
+            padding-left: 50%;
+        }
+
+            .restable td:before {
+                /* Now like a table header */
+                position: absolute;
+                /* Top/left values mimic padding */
+                top: 6px;
+                left: 6px;
+                width: 45%;
+                padding-right: 10px;
+                white-space: nowrap;
+            }
+
+        /*
+    Label the data
+    */
+        #iTable td:nth-of-type(1):before {
+            content: "Title";
+        }
+
+        #iTable td:nth-of-type(2):before {
+            content: "Description";
+        }
+
+        #iTable td:nth-of-type(3):before {
+            content: "Date";
+        }
+
+        #iTable td:nth-of-type(4):before {
+            content: "Poster";
+        }
+
+        #UserTable td:nth-of-type(1):before {
+            content: "Contact Name";
+        }
+
+        #UserTable td:nth-of-type(2):before {
+            content: "Date of Birth";
+        }
+
+        #UserTable td:nth-of-type(3):before {
+            content: "Phone Number";
+        }
+
+        #UserTable td:nth-of-type(4):before {
+            content: "Email";
+        }
+        #UserTable td:nth-of-type(4):before {
+            content: "Role";
+        }
+        #CrudTable td:nth-of-type(1):before {
+            content: "Title";
+        }
+        #CrudTable td:nth-of-type(2):before {
+            content: "Hall";
+        }
+        #CrudTable td:nth-of-type(3):before {
+            content: "Date and Time";
+        }
+        #BookingTable td:nth-of-type(1):before {
+            content: "Reservation ID";
+        }
+        #BookingTable td:nth-of-type(2):before {
+            content: "Title";
+        }
+        #BookingTable td:nth-of-type(3):before {
+            content: "Date and Time";
+        }
+        #BookingTable td:nth-of-type(4):before {
+            content: "Contact Name";
+        }
+        #BookingTable td:nth-of-type(5):before {
+            content: "Seat Number";
+        }
+        #BookingTable td:nth-of-type(6):before {
+            content: "Contact Email";
+        }
+        #BookingTable td:nth-of-type(7):before {
+            content: "Phone Number";
+        }
+        #BookingTable td:nth-of-type(8):before {
+            content: "Status";
+        }
+        #hallTable td:nth-of-type(1):before {
+            content: "Hall Name";
+        }
+
+        #hallTable td:nth-of-type(2):before {
+            content: "Size";
+        }
+
+        #hallTable td:nth-of-type(3):before {
+            content: "Action";
+        }
+        #reservTable td:nth-of-type(1):before {
+            content: "Title";
+        }
+
+        #reservTable td:nth-of-type(2):before {
+            content: "Seats";
+        }
+
+        #reservTable td:nth-of-type(3):before {
+            content: "User Id";
+        }
+        #reservTable td:nth-of-type(4):before {
+            content: "Date";
+        }
+
+        #reservTable td:nth-of-type(5):before {
+            content: "Price";
+        }
+
+        #reservTable td:nth-of-type(6):before {
+            content: "Movie Id";
+        }
+        #reservTable td:nth-of-type(7):before {
+            content: "Status";
+        }
+}
+
+.modal-dialog {
+    position: relative;
+    display: table; /* This is important */
+    overflow-y: auto;
+    overflow-x: auto;
+    width: auto;
+    min-width: 300px;
+}
+
+#pbuttons {
+    padding: 15px 25px;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 9px #999;
+    background-color: #4CAF50;
+}
+
+    #pbuttons:hover {
+        background-color: #3e8e41
+    }
+
+    #pbuttons:active {
+        background-color: #3e8e41;
+        box-shadow: 0 5px #666;
+        transform: translateY(4px);
+    }

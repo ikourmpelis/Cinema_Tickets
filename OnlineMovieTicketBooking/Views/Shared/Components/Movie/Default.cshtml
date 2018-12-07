@@ -1,0 +1,24 @@
+﻿@model OnlineMovieTicketBooking.Models.MovieDetails
+@using Microsoft.AspNetCore.Identity;
+
+
+
+<div class="card">
+    <div class="card-header w-100 text-muted">
+       <p style="color:#20c997"> <strong>@User.Identity.Name</strong> this may also interest you .....</p>
+    </div>
+    <div class="row no-gutters">
+        <div class="col-auto">
+            <img src="@Model.MoviePicture" width="150" asp-append-version="true">
+        </div>
+        <div class="col">
+            <div class="card-block px-2">
+                <h4 class="card-title">@Model.Movie_Name</h4>
+                <p class="card-text">@Model.Movie_Description</p>
+                <p> <a asp-controller="Movie" asp-action="Index" asp-route-query="@Model.Movie_Name">More Details.....</a></p>
+               
+            </div>
+        </div>
+    </div>
+
+</div>

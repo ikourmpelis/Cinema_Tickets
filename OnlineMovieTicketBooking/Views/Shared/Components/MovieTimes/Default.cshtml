@@ -1,0 +1,10 @@
+﻿@model IEnumerable<OnlineMovieTicketBooking.Models.MovieDetails>
+
+
+    @foreach (var item in Model)
+    {
+     
+    <a class="btn btn-success" asp-controller="Home" asp-action="BookNow" asp-route-id="@item.Id">@Html.DisplayFor(modelItem => item.DateAndTime)</a>
+}
+
+

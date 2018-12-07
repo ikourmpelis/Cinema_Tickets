@@ -1,0 +1,37 @@
+﻿@model OnlineMovieTicketBooking.Models.ImdbDetails
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<br />
+
+
+<div class="card info">
+    <div class="card-header w-100 text-muted">
+        <p style="font-size: 40px;">@Model.Title</p>
+    </div>
+    <div class="row no-gutters">
+        <div class="col-auto">
+            <img src="@Model.Poster" asp-append-version="true">
+        </div>
+        <div class="col">
+            <div class="card-block px-2">
+                <p><span style="color:#20c997;">Genre:</span> @Model.Genre</p>
+                <p><span style="color:#20c997;">Country:</span> @Model.Country</p>
+                <p><span style="color:#20c997;">Actors:</span> @Model.Actors</p>
+                <p><span style="color:#20c997;">Director:</span> @Model.Director</p>
+                <p><span style="color:#20c997;">Languange:</span> @Model.Language</p>
+                <p><span style="color:#20c997;">IMDB rating:</span> @Model.imdbRating</p>
+                <p><span style="color:#20c997;">Released:</span> @Model.Released</p>
+                <hr>
+                <p><span style="color:#20c997;">Plot</span></p>
+                <p>@Model.Plot</p>
+            </div>
+
+        </div>
+    </div>
+    <div class="card-footer">
+        @await Component.InvokeAsync("MovieTimes", Model.Title)
+    </div>
+</div>

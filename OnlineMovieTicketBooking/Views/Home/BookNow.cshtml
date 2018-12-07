@@ -1,0 +1,126 @@
+﻿@model OnlineMovieTicketBooking.Models.ViewModels.BookNowViewModel
+
+@{
+    ViewData["Title"] = "BookNow";
+}
+<br>
+@(Html.Raw(TempData["Sucess"]))
+
+        <h2 class="alert alert-success"> Book your seat now : </h2>
+ 
+    
+
+        <div class="row">
+            <div class="col-md-4">
+                <form asp-action="BookNow">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label>Title</label>
+                        <input readonly asp-for="Movie_Name" class="form-control" />
+                        <span asp-validation-for="Movie_Name" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label>Date and Time</label>
+                        <input readonly asp-for="Movie_Date" class="form-control" />
+                        <span asp-validation-for="Movie_Date" class="text-danger"></span>
+
+                    </div>
+                    <div class="form-group">
+
+                        <label>Click to add extra seats :</label>
+                        <input type="hidden" asp-for="SeatNo" class="form-control" id="SeatText" />
+                        <span asp-validation-for="SeatNo" class="text-danger"></span>
+                        @await Component.InvokeAsync("HallTable", Model.MovieId)
+                        <br>
+
+                        <input class="btn btn-danger" type="button" value="Clear All" onclick="clearAll();" />
+                    </div>
+                    <div class="form-group">
+                        <label>ID</label>
+                        <input readonly asp-for="MovieId" class="form-control" />
+                        <span asp-validation-for="MovieId" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Add to Cart" class="btn btn-default" />
+                    </div>
+                </form>
+            </div>
+        </div>
+
+
+
+        <div>
+            <a asp-action="Index">Back to List</a>|<a asp-action="Checkout">Check out Cart</a>
+        </div>
+
+ 
+
+
+@section scripts
+    {
+
+    <script type="text/javascript">
+
+    window.addEventListener("load", function () {
+           @foreach (var item in Model.allSeats) { <text> cc("@item"); </Text> }
+       
+
+ });
+    function cc(a) { document.getElementById(a).style.background = "red"; }
+
+    var table = document.getElementById("tableID");
+    if (table != null) {
+        for (var i = 0; i < table.rows.length; i++) {
+            for (var j = 0; j < table.rows[i].cells.length; j++)
+                table.rows[i].cells[j].onclick = function () {
+                    tableText(this);
+                };
+        }
+    }
+
+        function tableText(tableCell) {
+            if (tableCell.innerText != "") {
+                if (tableCell.style.background != "red") {
+                    if (tableCell.style.background != "green") {
+                        if (document.getElementById("SeatText").value != "") {
+                            document.getElementById("SeatText").value = document.getElementById("SeatText").value + "," + String(tableCell.innerText);
+                            tableCell.style.background = "green";
+                        } else {
+                            document.getElementById("SeatText").value = String(tableCell.innerText)
+                            tableCell.style.background = "green";
+                        }
+                    } else {
+                        str = document.getElementById("SeatText").value;
+
+                        document.getElementById("SeatText").value = document.getElementById("SeatText").value;
+
+                    }
+                } else { alert("This seat is already booked"); }
+            }
+
+    }
+    function clearAll() {
+            document.getElementById("SeatText").value = "";
+        var table = document.getElementById('tableID'),
+            rows = table.rows, rowcount = rows.length, r,
+            cells, cellcount, c, cell;
+        for (r = 0; r < rowcount; r++) {
+            cells = rows[r].cells;
+            cellcount = cells.length;
+            for (c = 0; c < cellcount; c++) {
+                cell = cells[c];
+                if (cell.style.background == "green")
+                {
+
+                    cell.style.background = "#adb5bd";
+                }
+            }
+        }
+
+
+    }
+
+
+    </script>
+
+}

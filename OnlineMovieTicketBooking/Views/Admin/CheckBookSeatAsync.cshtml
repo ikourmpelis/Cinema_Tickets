@@ -1,0 +1,135 @@
+﻿@model IEnumerable<OnlineMovieTicketBooking.Models.BookingTable>
+
+@{
+    ViewData["Title"] = "CheckBookSeat";
+}
+<br>
+
+        <h2>Reservations</h2>
+
+  <hr>
+        <div class="row">
+            <div class="col-md-6">
+                <input type="text" class="form-control" id="myInput" onkeyup="myFunction()" placeholder="Search for reservations sort by.." title="Type in a name">
+            </div>
+            <div class="col-md-6">
+                <select class="form-control" id="selector">
+                    <option value="0">ID</option>
+                    <option value="1">Movie</option>
+                    <option value="2">Date/Time</option>
+                    <option value="3">Client</option>
+                    <option value="4">Seat</option>
+                    <option value="5">Client Email</option>
+                    <option value="6">Client Phone Number</option>
+                    <option value="7">Status</option>
+                </select>
+            </div>
+        </div>
+        <br>
+        <table class="table restable" id="BookingTable">
+            <thead class="thead-light">
+                <tr>
+                    <th>
+                        Reservation ID
+                    </th>
+
+                    <th>
+                        Title
+                    </th>
+                    <th>
+                        Date and Time
+                    </th>
+                    <th>
+                        Contact Name
+                    </th>
+                    <th>
+                        Seat Number
+                    </th>
+                    <th>
+                        Contact Email
+                    </th>
+                    <th>
+                        Phone Number
+                    </th>
+                    <th>
+                        Status
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MovieName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Datetopresent)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UserName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SeatNo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PhoneNumber)
+                    </td>
+                    @if (item.IsCancelled == false)
+                    {
+
+                        <td>Active</td>
+                    }
+                    else
+                    {
+                        <td>Cancelled</td>
+                    }
+
+                    <td>
+                        <a class="btn btn-danger" asp-action="Edit_Booking" asp-route-id="@item.Id">Cancel</a>
+
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+
+@section scripts
+    {
+    <script>
+        function myFunction() {
+            var e = document.getElementById("selector");
+            var strUser = e.options[e.selectedIndex].value;
+            var input, filter, table, tr, td, i;
+            input = document.getElementById("myInput");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("BookingTable");
+            tr = table.getElementsByTagName("tr");
+            for (i = 0; i < tr.length; i++) {
+                if (strUser == 0) { td = tr[i].getElementsByTagName("td")[0]; }
+                if (strUser == 1) { td = tr[i].getElementsByTagName("td")[1]; }
+                if (strUser == 2) { td = tr[i].getElementsByTagName("td")[2]; }
+                if (strUser == 3) { td = tr[i].getElementsByTagName("td")[3]; }
+                if (strUser == 4) { td = tr[i].getElementsByTagName("td")[4]; }
+                if (strUser == 5) { td = tr[i].getElementsByTagName("td")[5]; }
+                if (strUser == 6) { td = tr[i].getElementsByTagName("td")[6]; }
+                if (strUser == 7) { td = tr[i].getElementsByTagName("td")[7]; }
+                if (td) {
+                    if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+    </script>
+
+}

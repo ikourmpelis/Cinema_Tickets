@@ -1,0 +1,112 @@
+﻿@using Microsoft.AspNetCore.Identity
+@model IEnumerable<OnlineMovieTicketBooking.Models.ApplicationUser>
+
+@{
+    ViewData["Title"] = "GetUserDetails";
+}
+
+<br>
+<div class="card">
+    <div class="card-header bg-primary text-white">
+        <h2>User Details</h2>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-6">
+                <input type="text" class="form-control" id="myInput" onkeyup="myFunction()" placeholder="Search for users sort by.." title="Type in a name">
+            </div>
+            <div class="col-md-6">
+                <select class="form-control" id="selector">
+                    <option value="0">Contact Name</option>
+                    <option value="1">Date of Birth</option>
+                    <option value="2">Phone Number</option>
+                    <option value="3">Email</option>
+                </select>
+            </div>
+        </div>
+        <br>
+        <table class="table restable" id="UserTable">
+            <thead>
+                <tr>
+                    <th>
+                       Contact Name
+                    </th>
+                    <th>
+                       Date Of Birth
+                    </th>
+                    <th>
+                       Phone Number
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Email)
+                    </th>
+                    <th>
+                       Role
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Contact_Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DateOfBirth)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PhoneNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                    <td>
+                        @await Component.InvokeAsync("Role", item.Id)
+                    </td>
+
+                    <td>
+                        <div class="dropdown">
+                            <button class="dropbtn btn btn-secondary">Assign a new Role</button>
+                            <div class="dropdown-content">
+                                <a asp-action="AsignRoleAsync" asp-route-uid="@item.Id" asp-route-role="Admin">Admin</a>
+                                <a asp-action="AsignRoleAsync" asp-route-uid="@item.Id" asp-route-role="cashier">Cashier</a>
+                                <a asp-action="AsignRoleAsync" asp-route-uid="@item.Id" asp-route-role="user">User</a>
+                            </div>
+                        </div>
+
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+@section scripts
+    {
+    <script>
+        function myFunction() {
+            var e = document.getElementById("selector");
+            var strUser = e.options[e.selectedIndex].value;
+            var input, filter, table, tr, td, i;
+            input = document.getElementById("myInput");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("UserTable");
+            tr = table.getElementsByTagName("tr");
+            for (i = 0; i < tr.length; i++) {
+                if (strUser == 0) { td = tr[i].getElementsByTagName("td")[0]; }
+                if (strUser == 1) { td = tr[i].getElementsByTagName("td")[1]; }
+                if (strUser == 2) { td = tr[i].getElementsByTagName("td")[2]; }
+                if (strUser == 3) { td = tr[i].getElementsByTagName("td")[3]; }
+                if (td) {
+                    if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+    </script>
+
+}

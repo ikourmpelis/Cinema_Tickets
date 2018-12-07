@@ -1,0 +1,21 @@
+﻿@model IEnumerable<OnlineMovieTicketBooking.Models.ViewModels.YearViewModel>
+
+@{
+    ViewData["Title"] = "Default";
+}
+
+
+
+
+
+    <div class="dropdown">
+        <button class="dropbtn btn btn-secondary">Choose Year</button>
+        <div class="dropdown-content">
+            @foreach (var item in Model)
+            {
+                <a asp-action="Bar" asp-route-Year="@item.Year" asp-route-role="Admin">@item.Year</a>
+            }
+            </div>
+    </div>
+
+
